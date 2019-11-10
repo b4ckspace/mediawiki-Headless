@@ -10,11 +10,13 @@ MagicWord::$mDoubleUnderscoreIDs[] = 'notitle';
 
 class Headless {
     public static function removeTitle( &$parser, &$text ) {
-        $parser->mOutput->addHeadItem(
-            '<style type="text/css">'
-            . 'h1.firstHeading {display: none;}'
-            . '</style>'
-        );
-        return true;
+        if (isset( $parser->mDoubleUnderscores['notitle'])) {
+            $parser->mOutput->addHeadItem(
+                '<style type="text/css">'
+                . 'h1.firstHeading {display: none;}'
+                . '</style>'
+            );
+	 }
+         return true;
     }
 }
